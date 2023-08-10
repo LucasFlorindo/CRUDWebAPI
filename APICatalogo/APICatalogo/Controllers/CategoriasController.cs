@@ -18,6 +18,13 @@ namespace APICatalogo.Controllers
             _context = context;
         }
 
+        [HttpGet("produtos")]
+        ActionResult<IEnumerable<Categoria>> GetCategoriasProdutos()
+        {
+            return _context.Categorias.Include(p=>p.Produtos).ToList();
+        }
+
+
         [HttpGet]
         public ActionResult<IEnumerable<Categoria>> Get()
         {
@@ -73,7 +80,7 @@ namespace APICatalogo.Controllers
 
             if (categoria is null)
             {
-                return NotFound("Produto não localizado");
+                return NotFound("Categoria não localizada");
             }
 
             _context.Remove(categoria);
