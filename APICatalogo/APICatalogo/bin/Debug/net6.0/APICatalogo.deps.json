@@ -13,7 +13,8 @@
           "Microsoft.EntityFrameworkCore.Tools": "6.0.20",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.15",
           "Pomelo.EntityFrameworkCore.MySql": "7.0.0",
-          "Swashbuckle.AspNetCore": "6.5.0"
+          "Swashbuckle.AspNetCore": "6.5.0",
+          "System.Text.Json": "7.0.0"
         },
         "runtime": {
           "APICatalogo.dll": {}

@@ -19,16 +19,24 @@ namespace APICatalogo.Controllers
         }
 
         [HttpGet("produtos")]
-        ActionResult<IEnumerable<Categoria>> GetCategoriasProdutos()
+        public ActionResult<IEnumerable<Categoria>> GetCategoriasProdutos()
         {
-            return _context.Categorias.Include(p=>p.Produtos).ToList();
+            try
+            {   
+                
+                return _context.Categorias.Include(p=>p.Produtos).AsNoTracking().ToList();
+
+            }catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
 
 
         [HttpGet]
         public ActionResult<IEnumerable<Categoria>> Get()
         {
-            return _context.Categorias.ToList();
+            return _context.Categorias.AsNoTracking().ToList();
         }
 
 
