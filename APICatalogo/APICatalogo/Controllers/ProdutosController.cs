@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APICatalogo.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ProdutosController : ControllerBase
     {
@@ -16,6 +16,25 @@ namespace APICatalogo.Controllers
         public ProdutosController(AppDbContext context)
         {
             _context = context;
+        }
+
+        [HttpGet("primeiro")]
+        public ActionResult<Produto> GetPrimeiro()
+        {
+            try
+            {
+                var produto = _context.Produtos.AsNoTracking().FirstOrDefault();
+                if (produto is null)
+                {
+                    return NotFound();
+                }
+                return produto;
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+
         }
 
 
